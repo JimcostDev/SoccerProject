@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ProjectSoccerPoo.Models.Partido>
+
+@{
+    ViewBag.Title = "Configuración - Partidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de partidos</h2>
+
+<p>
+    @Html.ActionLink("Crear partido", "Create", null, new { @class = "btn btn-warning" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.par_fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_horaInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_horaFin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_golesLocal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_golesVisitante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Equipo.equ_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Equipo1.equ_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Torneo.tor_nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_horaInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_horaFin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_golesLocal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_golesVisitante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Equipo.equ_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Equipo1.equ_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Torneo.tor_nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.par_codigo }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Detalles", "Details", new { id = item.par_codigo }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.par_codigo }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

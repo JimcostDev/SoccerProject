@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectSoccerPoo", "ProjectSoccerPoo.csproj", "{E7C1EB10-B65B-4C08-B14D-D33CC547B0D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectSoccerPoo.Tests", "..\ProjectSoccerPoo.Tests\ProjectSoccerPoo.Tests.csproj", "{93F378EE-5062-49C5-8E80-830CC74BF928}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7C1EB10-B65B-4C08-B14D-D33CC547B0D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7C1EB10-B65B-4C08-B14D-D33CC547B0D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7C1EB10-B65B-4C08-B14D-D33CC547B0D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7C1EB10-B65B-4C08-B14D-D33CC547B0D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93F378EE-5062-49C5-8E80-830CC74BF928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93F378EE-5062-49C5-8E80-830CC74BF928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93F378EE-5062-49C5-8E80-830CC74BF928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93F378EE-5062-49C5-8E80-830CC74BF928}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E277837C-C1D5-4294-8F29-4AEFA53449EA}
+	EndGlobalSection
+EndGlobal

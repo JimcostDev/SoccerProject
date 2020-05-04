@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ProjectSoccerPoo.Models.Equipo>
+
+@{
+    ViewBag.Title = "Configuración - Equipos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Equipos</h2>
+
+<p>
+    @Html.ActionLink("Crear equipo", "Create", null, new { @class = "btn btn-warning" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.equ_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entrenador.ent_nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entrenador.ent_primerApellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Liga.lig_descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.equ_nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Entrenador.ent_nombres)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Entrenador.ent_primerApellido)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Liga.lig_descripcion)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.equ_codigo }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Detalles", "Details", new { id = item.equ_codigo }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.equ_codigo }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
+}
+
+</table>

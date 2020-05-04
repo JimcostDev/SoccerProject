@@ -1,0 +1,33 @@
+﻿@model ProjectSoccerPoo.Models.Liga
+
+@{
+    ViewBag.Title = "Configuración - Ligas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Estás seguro que quieres eliminar esto?</h3>
+<div>
+    <h4>Liga</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.lig_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lig_descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> 
+            @Html.ActionLink("Volver a la lista", "Index",null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

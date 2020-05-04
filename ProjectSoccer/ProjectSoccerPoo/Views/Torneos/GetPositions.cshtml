@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ProjectSoccerPoo.Models.ObtenerPosiciones_Result>
+
+@{
+    ViewBag.Title = "GetPositions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetPositions</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.POS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PTOS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PJ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DG)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.POS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PTOS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PJ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DG)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

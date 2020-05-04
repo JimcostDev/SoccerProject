@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectSoccerPOOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Entrenador">
+    <Key>
+      <PropertyRef Name="ent_codigo" />
+    </Key>
+    <Property Name="ent_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ent_nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ent_primerApellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ent_segundoApellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ent_telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ent_correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Equipo" Relationship="Self.FK_Equipo_Entrenador" FromRole="Entrenador" ToRole="Equipo" />
+  </EntityType>
+  <EntityType Name="Equipo">
+    <Key>
+      <PropertyRef Name="equ_codigo" />
+    </Key>
+    <Property Name="equ_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="equ_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ent_codigo" Type="Int32" />
+    <Property Name="lig_codigo" Type="Int32" />
+    <NavigationProperty Name="Entrenador" Relationship="Self.FK_Equipo_Entrenador" FromRole="Equipo" ToRole="Entrenador" />
+    <NavigationProperty Name="Liga" Relationship="Self.FK_Equipo_Liga" FromRole="Equipo" ToRole="Liga" />
+    <NavigationProperty Name="Jugador" Relationship="Self.FK_Jugador_Equipo" FromRole="Equipo" ToRole="Jugador" />
+    <NavigationProperty Name="Partido" Relationship="Self.FK_Partido_EquipoLocal" FromRole="Equipo" ToRole="Partido" />
+    <NavigationProperty Name="Partido1" Relationship="Self.FK_Partido_EquipoVisitante" FromRole="Equipo" ToRole="Partido" />
+  </EntityType>
+  <EntityType Name="Jugador">
+    <Key>
+      <PropertyRef Name="jug_codigo" />
+    </Key>
+    <Property Name="jug_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="equ_codigo" Type="Int32" />
+    <Property Name="pos_codigo" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="jug_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="jug_primerApellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="jug_segundoApellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="jug_fechaNacimiento" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Equipo" Relationship="Self.FK_Jugador_Equipo" FromRole="Jugador" ToRole="Equipo" />
+    <NavigationProperty Name="Posicion" Relationship="Self.FK_Jugador_Posicion" FromRole="Jugador" ToRole="Posicion" />
+  </EntityType>
+  <EntityType Name="Liga">
+    <Key>
+      <PropertyRef Name="lig_codigo" />
+    </Key>
+    <Property Name="lig_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lig_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Equipo" Relationship="Self.FK_Equipo_Liga" FromRole="Liga" ToRole="Equipo" />
+  </EntityType>
+  <EntityType Name="Partido">
+    <Key>
+      <PropertyRef Name="par_codigo" />
+    </Key>
+    <Property Name="par_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="equ_codigo_visitante" Type="Int32" />
+    <Property Name="equ_codigo_local" Type="Int32" />
+    <Property Name="tor_codigo" Type="Int32" />
+    <Property Name="par_fecha" Type="DateTime" Precision="0" />
+    <Property Name="par_horaInicio" Type="Time" Precision="3" />
+    <Property Name="par_horaFin" Type="Time" Precision="3" />
+    <Property Name="par_golesLocal" Type="Int32" />
+    <Property Name="par_golesVisitante" Type="Int32" />
+    <NavigationProperty Name="Equipo" Relationship="Self.FK_Partido_EquipoLocal" FromRole="Partido" ToRole="Equipo" />
+    <NavigationProperty Name="Equipo1" Relationship="Self.FK_Partido_EquipoVisitante" FromRole="Partido" ToRole="Equipo" />
+    <NavigationProperty Name="Torneo" Relationship="ProjectSoccerPOOModel.FK_Partido_Torneo" FromRole="Partido" ToRole="Torneo" />
+  </EntityType>
+  <EntityType Name="Posicion">
+    <Key>
+      <PropertyRef Name="pos_codigo" />
+    </Key>
+    <Property Name="pos_codigo" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="pos_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Jugador" Relationship="Self.FK_Jugador_Posicion" FromRole="Posicion" ToRole="Jugador" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Equipo_Entrenador">
+    <End Role="Entrenador" Type="Self.Entrenador" Multiplicity="0..1" />
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entrenador">
+        <PropertyRef Name="ent_codigo" />
+      </Principal>
+      <Dependent Role="Equipo">
+        <PropertyRef Name="ent_codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Equipo_Liga">
+    <End Role="Liga" Type="Self.Liga" Multiplicity="0..1" />
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Liga">
+        <PropertyRef Name="lig_codigo" />
+      </Principal>
+      <Dependent Role="Equipo">
+        <PropertyRef Name="lig_codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jugador_Equipo">
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
+    <End Role="Jugador" Type="Self.Jugador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipo">
+        <PropertyRef Name="equ_codigo" />
+      </Principal>
+      <Dependent Role="Jugador">
+        <PropertyRef Name="equ_codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partido_EquipoLocal">
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
+    <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipo">
+        <PropertyRef Name="equ_codigo" />
+      </Principal>
+      <Dependent Role="Partido">
+        <PropertyRef Name="equ_codigo_local" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partido_EquipoVisitante">
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
+    <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipo">
+        <PropertyRef Name="equ_codigo" />
+      </Principal>
+      <Dependent Role="Partido">
+        <PropertyRef Name="equ_codigo_visitante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jugador_Posicion">
+    <End Role="Posicion" Type="Self.Posicion" Multiplicity="0..1" />
+    <End Role="Jugador" Type="Self.Jugador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posicion">
+        <PropertyRef Name="pos_codigo" />
+      </Principal>
+      <Dependent Role="Jugador">
+        <PropertyRef Name="pos_codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectSoccerPOOEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Entrenador" EntityType="Self.Entrenador" />
+    <EntitySet Name="Equipo" EntityType="Self.Equipo" />
+    <EntitySet Name="Jugador" EntityType="Self.Jugador" />
+    <EntitySet Name="Liga" EntityType="Self.Liga" />
+    <EntitySet Name="Partido" EntityType="Self.Partido" />
+    <EntitySet Name="Posicion" EntityType="Self.Posicion" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Equipo_Entrenador" Association="Self.FK_Equipo_Entrenador">
+      <End Role="Entrenador" EntitySet="Entrenador" />
+      <End Role="Equipo" EntitySet="Equipo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Equipo_Liga" Association="Self.FK_Equipo_Liga">
+      <End Role="Liga" EntitySet="Liga" />
+      <End Role="Equipo" EntitySet="Equipo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jugador_Equipo" Association="Self.FK_Jugador_Equipo">
+      <End Role="Equipo" EntitySet="Equipo" />
+      <End Role="Jugador" EntitySet="Jugador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partido_EquipoLocal" Association="Self.FK_Partido_EquipoLocal">
+      <End Role="Equipo" EntitySet="Equipo" />
+      <End Role="Partido" EntitySet="Partido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partido_EquipoVisitante" Association="Self.FK_Partido_EquipoVisitante">
+      <End Role="Equipo" EntitySet="Equipo" />
+      <End Role="Partido" EntitySet="Partido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jugador_Posicion" Association="Self.FK_Jugador_Posicion">
+      <End Role="Posicion" EntitySet="Posicion" />
+      <End Role="Jugador" EntitySet="Jugador" />
+    </AssociationSet>
+    <FunctionImport Name="ObtenerPosiciones" ReturnType="Collection(ProjectSoccerPOOModel.ObtenerPosiciones_Result)" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ProjectSoccerPOOModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ProjectSoccerPOOModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Torneo" EntityType="ProjectSoccerPOOModel.Torneo" />
+    <AssociationSet Name="FK_Partido_Torneo" Association="ProjectSoccerPOOModel.FK_Partido_Torneo">
+      <End Role="Torneo" EntitySet="Torneo" />
+      <End Role="Partido" EntitySet="Partido" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="ObtenerPosiciones_Result">
+    <Property Type="Int64" Name="POS" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="NAME" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="PTOS" Nullable="true" />
+    <Property Type="Int32" Name="PJ" Nullable="true" />
+    <Property Type="Int32" Name="GF" Nullable="true" />
+    <Property Type="Int32" Name="GC" Nullable="true" />
+    <Property Type="Int32" Name="PG" Nullable="true" />
+    <Property Type="Int32" Name="PP" Nullable="true" />
+    <Property Type="Int32" Name="DG" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Torneo">
+    <Key>
+      <PropertyRef Name="tor_codigo" />
+    </Key>
+    <Property Name="tor_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tor_fechaInicio" Type="DateTime" Precision="0" />
+    <Property Name="tor_fechaFinal" Type="DateTime" Precision="0" />
+    <Property Name="tor_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Partido" Relationship="ProjectSoccerPOOModel.FK_Partido_Torneo" FromRole="Torneo" ToRole="Partido" />
+  </EntityType>
+  <Association Name="FK_Partido_Torneo">
+    <End Type="ProjectSoccerPOOModel.Torneo" Role="Torneo" Multiplicity="0..1" />
+    <End Type="ProjectSoccerPOOModel.Partido" Role="Partido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Torneo">
+        <PropertyRef Name="tor_codigo" />
+      </Principal>
+      <Dependent Role="Partido">
+        <PropertyRef Name="tor_codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

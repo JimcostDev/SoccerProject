@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ProjectSoccerPoo.Models.Liga>
+
+@{
+    ViewBag.Title = "Configuración - Ligas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de ligas</h2>
+
+<p>
+    @Html.ActionLink("Crear liga", "Create", null, new { @class = "btn btn-warning" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.lig_descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.lig_descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.lig_codigo }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Detalles", "Details", new { id = item.lig_codigo }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.lig_codigo }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

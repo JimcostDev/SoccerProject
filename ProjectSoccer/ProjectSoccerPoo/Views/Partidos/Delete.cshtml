@@ -1,0 +1,89 @@
+﻿@model ProjectSoccerPoo.Models.Partido
+
+@{
+    ViewBag.Title = "Configuración - Partidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Estás seguro que quieres eliminar esto?</h3>
+<div>
+    <h4>Partido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.par_fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.par_fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.par_horaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.par_horaInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.par_horaFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.par_horaFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.par_golesLocal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.par_golesLocal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.par_golesVisitante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.par_golesVisitante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipo.equ_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Equipo.equ_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipo1.equ_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Equipo1.equ_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Torneo.tor_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Torneo.tor_nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Eliminar" class="btn btn-danger" />
+    @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-default" })
+</div>
+    }
+</div>

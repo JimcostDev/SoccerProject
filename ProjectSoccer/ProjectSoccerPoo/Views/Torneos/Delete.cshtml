@@ -1,0 +1,50 @@
+﻿@model ProjectSoccerPoo.Models.Torneo
+
+@{
+    ViewBag.Title = "Configuración - Equipos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Estás seguro que quieres eliminar esto?</h3>
+<div>
+    <h4>Torneo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tor_fechaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_fechaInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tor_fechaFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_fechaFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tor_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

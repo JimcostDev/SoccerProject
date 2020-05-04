@@ -1,0 +1,67 @@
+﻿@model ProjectSoccerPoo.Models.Jugador
+
+@{
+    ViewBag.Title = "Plantilla - Jugadores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Jugador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.jug_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jug_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jug_primerApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jug_primerApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jug_segundoApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jug_segundoApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jug_fechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jug_fechaNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipo.equ_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Equipo.equ_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Posicion.pos_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Posicion.pos_descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.jug_codigo }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-default" })
+</p>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProjectSoccerPoo.Models.Torneo>
+
+@{
+    ViewBag.Title = "Configuración - Torneos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h2>Listado de torneos</h2>
+
+<p>
+    @Html.ActionLink("Crear torneo", "Create", null, new { @class = "btn btn-warning" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tor_fechaInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tor_fechaFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tor_nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tor_fechaInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tor_fechaFinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tor_nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.tor_codigo }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Detalles", "Details", new { id = item.tor_codigo }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.tor_codigo }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Tabla de posiciones", "GetPositions", new { id = item.tor_codigo }, new { @class = "btn btn-default" })
+        </td>
+    </tr>
+}
+
+</table>
