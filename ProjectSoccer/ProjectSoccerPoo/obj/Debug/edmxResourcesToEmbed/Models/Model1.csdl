@@ -32,13 +32,13 @@
     </Key>
     <Property Name="jug_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="equ_codigo" Type="Int32" />
-    <Property Name="pos_codigo" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="pos_codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="jug_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="jug_primerApellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="jug_segundoApellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="jug_fechaNacimiento" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Equipo" Relationship="Self.FK_Jugador_Equipo" FromRole="Jugador" ToRole="Equipo" />
-    <NavigationProperty Name="Posicion" Relationship="Self.FK_Jugador_Posicion" FromRole="Jugador" ToRole="Posicion" />
+    <NavigationProperty Name="Posicion" Relationship="ProjectSoccerPOOModel.FK_Jugador_Posicion" FromRole="Jugador" ToRole="Posicion" />
   </EntityType>
   <EntityType Name="Liga">
     <Key>
@@ -64,24 +64,6 @@
     <NavigationProperty Name="Equipo" Relationship="Self.FK_Partido_EquipoLocal" FromRole="Partido" ToRole="Equipo" />
     <NavigationProperty Name="Equipo1" Relationship="Self.FK_Partido_EquipoVisitante" FromRole="Partido" ToRole="Equipo" />
     <NavigationProperty Name="Torneo" Relationship="ProjectSoccerPOOModel.FK_Partido_Torneo" FromRole="Partido" ToRole="Torneo" />
-  </EntityType>
-  <EntityType Name="Posicion">
-    <Key>
-      <PropertyRef Name="pos_codigo" />
-    </Key>
-    <Property Name="pos_codigo" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="pos_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Jugador" Relationship="Self.FK_Jugador_Posicion" FromRole="Posicion" ToRole="Jugador" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK_Equipo_Entrenador">
     <End Role="Entrenador" Type="Self.Entrenador" Multiplicity="0..1" />
@@ -143,26 +125,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Jugador_Posicion">
-    <End Role="Posicion" Type="Self.Posicion" Multiplicity="0..1" />
-    <End Role="Jugador" Type="Self.Jugador" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Posicion">
-        <PropertyRef Name="pos_codigo" />
-      </Principal>
-      <Dependent Role="Jugador">
-        <PropertyRef Name="pos_codigo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="ProjectSoccerPOOEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Entrenador" EntityType="Self.Entrenador" />
     <EntitySet Name="Equipo" EntityType="Self.Equipo" />
     <EntitySet Name="Jugador" EntityType="Self.Jugador" />
     <EntitySet Name="Liga" EntityType="Self.Liga" />
     <EntitySet Name="Partido" EntityType="Self.Partido" />
-    <EntitySet Name="Posicion" EntityType="Self.Posicion" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <AssociationSet Name="FK_Equipo_Entrenador" Association="Self.FK_Equipo_Entrenador">
       <End Role="Entrenador" EntitySet="Entrenador" />
       <End Role="Equipo" EntitySet="Equipo" />
@@ -182,10 +150,6 @@
     <AssociationSet Name="FK_Partido_EquipoVisitante" Association="Self.FK_Partido_EquipoVisitante">
       <End Role="Equipo" EntitySet="Equipo" />
       <End Role="Partido" EntitySet="Partido" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Jugador_Posicion" Association="Self.FK_Jugador_Posicion">
-      <End Role="Posicion" EntitySet="Posicion" />
-      <End Role="Jugador" EntitySet="Jugador" />
     </AssociationSet>
     <FunctionImport Name="ObtenerPosiciones" ReturnType="Collection(ProjectSoccerPOOModel.ObtenerPosiciones_Result)" />
     <FunctionImport Name="sp_alterdiagram">
@@ -222,6 +186,11 @@
     <AssociationSet Name="FK_Partido_Torneo" Association="ProjectSoccerPOOModel.FK_Partido_Torneo">
       <End Role="Torneo" EntitySet="Torneo" />
       <End Role="Partido" EntitySet="Partido" />
+    </AssociationSet>
+    <EntitySet Name="Posicion" EntityType="ProjectSoccerPOOModel.Posicion" />
+    <AssociationSet Name="FK_Jugador_Posicion" Association="ProjectSoccerPOOModel.FK_Jugador_Posicion">
+      <End Role="Posicion" EntitySet="Posicion" />
+      <End Role="Jugador" EntitySet="Jugador" />
     </AssociationSet>
   </EntityContainer>
   <ComplexType Name="ObtenerPosiciones_Result">
@@ -266,6 +235,26 @@
       </Principal>
       <Dependent Role="Partido">
         <PropertyRef Name="tor_codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Posicion">
+    <Key>
+      <PropertyRef Name="pos_codigo" />
+    </Key>
+    <Property Name="pos_codigo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pos_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Jugador" Relationship="ProjectSoccerPOOModel.FK_Jugador_Posicion" FromRole="Posicion" ToRole="Jugador" />
+  </EntityType>
+  <Association Name="FK_Jugador_Posicion">
+    <End Type="ProjectSoccerPOOModel.Posicion" Role="Posicion" Multiplicity="0..1" />
+    <End Type="ProjectSoccerPOOModel.Jugador" Role="Jugador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posicion">
+        <PropertyRef Name="pos_codigo" />
+      </Principal>
+      <Dependent Role="Jugador">
+        <PropertyRef Name="pos_codigo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

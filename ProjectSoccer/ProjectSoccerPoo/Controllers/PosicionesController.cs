@@ -18,7 +18,7 @@ namespace ProjectSoccerPoo.Controllers
         // GET: Posiciones
         public async Task<ActionResult> Index()
         {
-            return View(await db.Posicion.ToListAsync());
+            return View(await db.Posicion.OrderBy(c => c.pos_descripcion).ToListAsync());
         }
 
         // GET: Posiciones/Details/5

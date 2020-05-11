@@ -32,9 +32,8 @@ namespace ProjectSoccerPoo.Models
         public virtual DbSet<Jugador> Jugador { get; set; }
         public virtual DbSet<Liga> Liga { get; set; }
         public virtual DbSet<Partido> Partido { get; set; }
-        public virtual DbSet<Posicion> Posicion { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Torneo> Torneo { get; set; }
+        public virtual DbSet<Posicion> Posicion { get; set; }
     
         public virtual ObjectResult<ObtenerPosiciones_Result> ObtenerPosiciones()
         {
@@ -143,7 +142,5 @@ namespace ProjectSoccerPoo.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
-
-        public System.Data.Entity.DbSet<ProjectSoccerPoo.Models.ObtenerPosiciones_Result> ObtenerPosiciones_Result { get; set; }
     }
 }

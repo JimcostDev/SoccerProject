@@ -45,7 +45,6 @@ namespace ProjectSoccerPoo.Models
         [Required]
         public Nullable<int> par_golesVisitante { get; set; }
 
-
         public virtual Equipo Equipo { get; set; }
         public virtual Equipo Equipo1 { get; set; }
         public virtual Torneo Torneo { get; set; }

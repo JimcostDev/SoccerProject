@@ -10,16 +10,15 @@
         <EntityTypeShape EntityType="ProjectSoccerPOOModel.Jugador" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectSoccerPOOModel.Liga" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectSoccerPOOModel.Partido" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectSoccerPOOModel.Posicion" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectSoccerPOOModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
         <AssociationConnector Association="ProjectSoccerPOOModel.FK_Equipo_Entrenador" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectSoccerPOOModel.FK_Equipo_Liga" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectSoccerPOOModel.FK_Jugador_Equipo" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectSoccerPOOModel.FK_Partido_EquipoLocal" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectSoccerPOOModel.FK_Partido_EquipoVisitante" ManuallyRouted="false" />
-        <AssociationConnector Association="ProjectSoccerPOOModel.FK_Jugador_Posicion" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ProjectSoccerPOOModel.Torneo" Width="1.5" PointX="5.375" PointY="0.875" />
         <AssociationConnector Association="ProjectSoccerPOOModel.FK_Partido_Torneo" />
+        <EntityTypeShape EntityType="ProjectSoccerPOOModel.Posicion" Width="1.5" PointX="7.375" PointY="0.875" />
+        <AssociationConnector Association="ProjectSoccerPOOModel.FK_Jugador_Posicion" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

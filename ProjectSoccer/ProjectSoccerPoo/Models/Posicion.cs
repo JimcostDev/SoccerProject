@@ -24,6 +24,7 @@ namespace ProjectSoccerPoo.Models
 
         [DisplayName("Posición abreviatura")]
         [Required]
+        [Key]
         public string pos_codigo { get; set; }
         [DisplayName("Descripción")]
         [Required]
