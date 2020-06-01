@@ -14,6 +14,7 @@ namespace ProjectSoccerPoo.Controllers
     public class TorneosController : Controller
     {
         private ProjectSoccerPOOEntities db = new ProjectSoccerPOOEntities();
+        
 
         // GET: Torneos
         public async Task<ActionResult> Index()
@@ -116,10 +117,12 @@ namespace ProjectSoccerPoo.Controllers
             return RedirectToAction("Index");
         }
         // GET: Torneos/GetPositions/5
+        [HttpGet]
         public ActionResult GetPositions()
         {
-
-            return View();
+            //Ejecutar prodedimiento de almacenado
+            var tablaPosiciones = db.ObtenerPosiciones();
+            return View(tablaPosiciones);
         }
 
 

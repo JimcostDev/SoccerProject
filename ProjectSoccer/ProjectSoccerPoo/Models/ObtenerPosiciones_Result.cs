@@ -10,11 +10,14 @@
 namespace ProjectSoccerPoo.Models
 {
     using System;
-    
+    using System.ComponentModel;
+
     public partial class ObtenerPosiciones_Result
     {
+       
         public Nullable<long> POS { get; set; }
         public Nullable<int> ID { get; set; }
+        [DisplayName("EQUIPO")]
         public string NAME { get; set; }
         public Nullable<int> PTOS { get; set; }
         public Nullable<int> PJ { get; set; }

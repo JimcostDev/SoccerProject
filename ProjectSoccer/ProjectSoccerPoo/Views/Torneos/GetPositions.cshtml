@@ -1,15 +1,13 @@
 ﻿@model IEnumerable<ProjectSoccerPoo.Models.ObtenerPosiciones_Result>
 
 @{
-    ViewBag.Title = "GetPositions";
+    ViewBag.Title = "Configuración - GetPositions";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>GetPositions</h2>
+<h2>Tabla de posiciones</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -42,41 +40,40 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.POS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PTOS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PJ)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GF)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PG)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DG)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.POS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PTOS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PJ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DG)
+            </td>
 
+        </tr>
+    }
+    <p>
+        @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-default" })
+    </p>
 </table>

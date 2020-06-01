@@ -34,7 +34,7 @@ namespace ProjectSoccerPoo.Models
         public virtual DbSet<Partido> Partido { get; set; }
         public virtual DbSet<Torneo> Torneo { get; set; }
         public virtual DbSet<Posicion> Posicion { get; set; }
-    
+
         public virtual ObjectResult<ObtenerPosiciones_Result> ObtenerPosiciones()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerPosiciones_Result>("ObtenerPosiciones");
