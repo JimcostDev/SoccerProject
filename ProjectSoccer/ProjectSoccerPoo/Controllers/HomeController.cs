@@ -8,6 +8,7 @@ namespace ProjectSoccerPoo.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]//nadie va a entrar al sistema sin logearse
         public ActionResult Index()
         {
             return View();

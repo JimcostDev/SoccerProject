@@ -11,6 +11,7 @@ using ProjectSoccerPoo.Models;
 
 namespace ProjectSoccerPoo.Controllers
 {
+    [Authorize(Roles = "Entrenador, Admin")]
     public class LigasController : Controller
     {
         private ProjectSoccerPOOEntities db = new ProjectSoccerPOOEntities();
@@ -47,6 +48,7 @@ namespace ProjectSoccerPoo.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Create([Bind(Include = "lig_codigo,lig_descripcion")] Liga liga)
         {
             if (ModelState.IsValid)
@@ -60,6 +62,7 @@ namespace ProjectSoccerPoo.Controllers
         }
 
         // GET: Ligas/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,6 +82,7 @@ namespace ProjectSoccerPoo.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit([Bind(Include = "lig_codigo,lig_descripcion")] Liga liga)
         {
             if (ModelState.IsValid)
@@ -91,6 +95,7 @@ namespace ProjectSoccerPoo.Controllers
         }
 
         // GET: Ligas/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
